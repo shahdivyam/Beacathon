@@ -41,11 +41,23 @@
         android:paddingStart="15dp"
         android:paddingTop="20dp">
 
+        <TextView
+            style="@style/TitleBadgeTitle"
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:layout_above="@+id/TotalPrice"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="15dp"
+            android:layout_marginBottom="13dp" />
+
         <ImageView
             android:id="@+id/title_from_to_dots"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
+            android:visibility="gone"
             android:layout_marginEnd="10dp"
             android:src="@drawable/from_to_purple" />
 
@@ -55,13 +67,15 @@
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/title_from_to_dots"
             android:layout_marginTop="-5dp"
-            android:layout_toEndOf="@+id/title_from_to_dots"
             android:ellipsize="marquee"
             android:fadingEdge="horizontal"
             android:singleLine="true"
             android:textColor="@android:color/black"
             android:textSize="18sp"
-            android:text="DOMINOS PIZZA"/>
+            android:text="DOMINOS PIZZA"
+            android:textAlignment="center"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentStart="true" />
 
         <ImageView
             android:id="@+id/title_from_to_dots_divider"
@@ -78,14 +92,49 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/title_from_to_dots_divider"
-            android:layout_toEndOf="@id/title_from_to_dots"
             android:ellipsize="marquee"
             android:fadingEdge="horizontal"
+            android:textAlignment="center"
             android:singleLine="true"
             android:textColor="@android:color/black"
             android:textSize="16sp"
-            android:text="30 Meteres Away From You"/>
+            android:text="30 Meteres Away From You"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentStart="true" />
+
+
+        <TextView
+            android:id="@+id/TotalPrice"
+            style="@style/TitleBadgeText"
+            android:textColor="@android:color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total Price kitna hai"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            style="@style/TitleBadgeTitle"
+            android:id="@+id/qty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/TotalPrice"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="15dp"
+            android:layout_marginBottom="13dp" />
+
+        <TextView
+            style="@style/TitleBadgeTitle"
+            android:id="@+id/price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Price One"
+            android:layout_alignBaseline="@+id/textView3"
+            android:layout_alignBottom="@+id/textView3"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="20dp" />
 
 
     </RelativeLayout>
 </LinearLayout>
+

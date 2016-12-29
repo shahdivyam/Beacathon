@@ -17,7 +17,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.ayush.resturantninjas.R;
-import com.example.ayush.resturantninjas.RestrauntActivity.ClickActivity;
+import com.example.ayush.resturantninjas.RestrauntActivity.BurgerKing;
+import com.example.ayush.resturantninjas.RestrauntActivity.Dominos;
 import com.example.ayush.resturantninjas.RestrauntActivity.KhanaKhazana;
 import com.example.ayush.resturantninjas.RestrauntActivity.RVFoodAdapter;
 
@@ -92,7 +93,7 @@ public class MainActivity extends AppCompatActivity implements RVAdapter.ClickLi
         Intent intent;
         switch (position)
         {
-            case 0:intent = new Intent(getApplicationContext(), ClickActivity.class);
+            case 0:intent = new Intent(getApplicationContext(), Dominos.class);
                     intent.putExtra("Position",position);
                     startActivity(intent);
                     break;
@@ -100,17 +101,13 @@ public class MainActivity extends AppCompatActivity implements RVAdapter.ClickLi
                     intent.putExtra("Position",position);
                     startActivity(intent);
                     break;
-            case 2:intent = new Intent(getApplicationContext(),RVFoodAdapter.BurgerKing.class);
+            case 2:intent = new Intent(getApplicationContext(),BurgerKing.class);
                     intent.putExtra("Position",position);
                     startActivity(intent);
                     break;
 
 
         }
-
-
-        
-
     }
     private boolean isBlueEnable() {
         BluetoothManager bluetoothManager = (BluetoothManager) getSystemService(BLUETOOTH_SERVICE);

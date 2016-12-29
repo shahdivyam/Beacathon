@@ -24,16 +24,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".RestrauntActivity.ClickActivity"
-            android:label="@string/title_activity_click"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".RestrauntActivity.KhanaKhazana"
-            android:label="@string/title_activity_click"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".RestrauntActivity.RVFoodAdapter$BurgerKing"
-            android:label="@string/title_activity_click"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".RestrauntActivity.Dominos" android:label="Dominos" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".RestrauntActivity.KhanaKhazana" android:label="Khana Khazana" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".RestrauntActivity.BurgerKing" android:label="Mc Donalds" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".RestrauntActivity.CartActivity"/>
+        <activity android:name=".RestrauntActivity.FinalActivity"/>
     </application>
-
 </manifest>

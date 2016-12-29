@@ -27,12 +27,12 @@ import java.util.List;
  * Created by Ayush on 29-12-2016.
  */
 
-public class RVFoodAdapter extends RecyclerView.Adapter<RVFoodAdapter.FoodViewHolder>{
+public class RVBurgerKingAdapter extends RecyclerView.Adapter<RVBurgerKingAdapter.FoodViewHolder>{
 
         List<FoodItem> fooditem;
         public static Context context;
-         private static RVFoodAdapter.ClickListner clickListner;
-        RVFoodAdapter(Context context, List<FoodItem> fooditem)
+         private static RVBurgerKingAdapter.ClickListner clickListner;
+        RVBurgerKingAdapter(Context context, List<FoodItem> fooditem)
         {
             this.context=context;
             this. fooditem= fooditem;
@@ -68,7 +68,7 @@ public class RVFoodAdapter extends RecyclerView.Adapter<RVFoodAdapter.FoodViewHo
     @Override
     public FoodViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.fragment_menu, viewGroup, false);
-        RVFoodAdapter.FoodViewHolder pvh = new FoodViewHolder(v);
+        RVBurgerKingAdapter.FoodViewHolder pvh = new FoodViewHolder(v);
         return pvh;
     }
 
@@ -92,20 +92,21 @@ public class RVFoodAdapter extends RecyclerView.Adapter<RVFoodAdapter.FoodViewHo
                 break;
         }
 
+
     }
 
     @Override
     public int getItemCount() {
         return fooditem.size();
     }
-    public void setClickListner(RVFoodAdapter.ClickListner clickListner)
+    public void setClickListner(RVBurgerKingAdapter.ClickListner clickListner)
     {
         this.clickListner=clickListner;
     }
 
     public interface ClickListner
     {
-        public void ItemClicked(View view , int position);
+        public void ItemClicked(View view, int position);
     }
 
 
@@ -151,7 +152,7 @@ public class RVFoodAdapter extends RecyclerView.Adapter<RVFoodAdapter.FoodViewHo
             fooditem.add(new FoodItem("McPaneer",100,"lalalala"));
             fooditem.add(new FoodItem("McSwirl",100,"lalalala"));
 
-            RVFoodAdapter adapter=new RVFoodAdapter(this,fooditem);
+            RVBurgerKingAdapter adapter=new RVBurgerKingAdapter(this,fooditem);
             adapter.setClickListner(this);
             rv.setAdapter(adapter);
         }

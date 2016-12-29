@@ -23,35 +23,35 @@ import com.example.ayush.resturantninjas.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class KhanaKhazana extends AppCompatActivity  implements RVFoodAdapter.ClickListner {
+public class BurgerKing extends AppCompatActivity implements RVBurgerKingAdapter.ClickListner {
     public List<FoodItem> fooditem;
     Context context;
-    DatabaseHandler db = new DatabaseHandler(this);
-
+    DatabaseHandler db=new DatabaseHandler(this);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_click);
-        context = this;
-        Intent intent = getIntent();
-        int position = intent.getIntExtra("Position", -1);
-        Toast.makeText(this, String.valueOf(position), Toast.LENGTH_SHORT).show();
+        context=this;
 
+        Intent intent=getIntent();
+        int position=intent.getIntExtra("Position",-1);
+
+        Toast.makeText(this, String.valueOf(position), Toast.LENGTH_SHORT).show();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        RecyclerView rv = (RecyclerView) findViewById(R.id.rv);
-        GridLayoutManager llm = new GridLayoutManager(this, 1);
+        RecyclerView rv = (RecyclerView)findViewById(R.id.rv);
+        GridLayoutManager llm=new GridLayoutManager(this,1);
         rv.setLayoutManager(llm);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder alertDialog = new AlertDialog.Builder(KhanaKhazana.this);
+                AlertDialog.Builder alertDialog = new AlertDialog.Builder(BurgerKing.this);
                 alertDialog.setTitle("NAME");
                 alertDialog.setMessage("Enter Name");
-                final EditText input = new EditText(KhanaKhazana.this);
+                final EditText input = new EditText(BurgerKing.this);
                 LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.MATCH_PARENT,
                         LinearLayout.LayoutParams.MATCH_PARENT);
@@ -85,46 +85,41 @@ public class KhanaKhazana extends AppCompatActivity  implements RVFoodAdapter.Cl
 
             }
         });
-        fooditem = new ArrayList<>();
-        fooditem.add(new FoodItem("Rajma Chawal", 100, "lalalala"));
-        fooditem.add(new FoodItem("Dal Makhni", 100, "lalalala"));
-        fooditem.add(new FoodItem("Naan", 100, "lalalala"));
-        fooditem.add(new FoodItem("Chole Chawal", 100, "lalalala"));
-        fooditem.add(new FoodItem("Chowmien", 100, "lalalala"));
-        fooditem.add(new FoodItem("Pao Bhaji", 100, "lalalala"));
+        fooditem=new ArrayList<>();
+        fooditem.add(new FoodItem("Chicken Grill",100,"lalalala"));
+        fooditem.add(new FoodItem("McAloo",100,"lalalala"));
+        fooditem.add(new FoodItem("McChicken",100,"lalalala"));
+        fooditem.add(new FoodItem("McPuff",100,"lalalala"));
+        fooditem.add(new FoodItem("McPaneer",100,"lalalala"));
+        fooditem.add(new FoodItem("McSwirl",100,"lalalala"));
 
-        RVFoodAdapter adapter = new RVFoodAdapter(this, fooditem);
+        RVBurgerKingAdapter adapter=new RVBurgerKingAdapter(this,fooditem);
         adapter.setClickListner(this);
         rv.setAdapter(adapter);
-
     }
 
     @Override
     public void ItemClicked(View view, int position) {
 
-        switch (position) {
-            case 0:
-                db.addOrder(new Order("Khana Khazana", "Rajma Chawal", 1, 100));
+        switch (position)
+        {
+            case 0:db.addOrder(new Order("McDonalds","Chicken Grll",1,100));
                 break;
-            case 1:
-                db.addOrder(new Order("Khana Khazana", "Dal Makhni", 1, 100));
+            case 1: db.addOrder(new Order("McDonalds","McAloo",1,100));
                 break;
-            case 2:
-                db.addOrder(new Order("Khana Khazana", "Naan", 1, 100));
+            case 2: db.addOrder(new Order("McDonalds","McChicken",1,100));
                 break;
-            case 3:
-                db.addOrder(new Order("Khana Khazana", "Chole Chawal", 1, 100));
+            case 3:db.addOrder(new Order("McDonalds","McPuff",1,100));
                 break;
-            case 4:
-                db.addOrder(new Order("Khana Khazana", "Chowmien", 1, 100));
+            case 4: db.addOrder(new Order("McDonalds","McPaneer",1,100));
                 break;
-            case 5:
-                db.addOrder(new Order("Dominos", "Pao Bhaji", 1, 100));
+            case 5: db.addOrder(new Order("McDonalds","McSwirl",1,100));
                 break;
 
         }
         Snackbar.make(view, "Your Order is Added ", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
-    }
 
+
+    }
 }

@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">ResturantNinjas</string>
     <string name="title_activity_click">ClickActivity</string>
+    <string name="res_1">Dominos</string>
+    <string name="res_2">Mc Donalds</string>
+    <string name="res_3">Khaana Khazaana</string>
 </resources>

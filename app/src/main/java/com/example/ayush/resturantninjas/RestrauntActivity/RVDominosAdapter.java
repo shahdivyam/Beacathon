@@ -8,6 +8,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -27,12 +28,12 @@ import java.util.List;
  * Created by Ayush on 29-12-2016.
  */
 
-public class RVFoodAdapter extends RecyclerView.Adapter<RVFoodAdapter.FoodViewHolder>{
+public class RVDominosAdapter extends RecyclerView.Adapter<RVDominosAdapter.FoodViewHolder>{
 
         List<FoodItem> fooditem;
         public static Context context;
-         private static RVFoodAdapter.ClickListner clickListner;
-        RVFoodAdapter(Context context, List<FoodItem> fooditem)
+         private static RVDominosAdapter.ClickListner clickListner;
+        RVDominosAdapter(Context context, List<FoodItem> fooditem)
         {
             this.context=context;
             this. fooditem= fooditem;
@@ -68,7 +69,7 @@ public class RVFoodAdapter extends RecyclerView.Adapter<RVFoodAdapter.FoodViewHo
     @Override
     public FoodViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.fragment_menu, viewGroup, false);
-        RVFoodAdapter.FoodViewHolder pvh = new FoodViewHolder(v);
+        RVDominosAdapter.FoodViewHolder pvh = new FoodViewHolder(v);
         return pvh;
     }
 
@@ -78,19 +79,20 @@ public class RVFoodAdapter extends RecyclerView.Adapter<RVFoodAdapter.FoodViewHo
         holder.ratemoney.setText(String.valueOf(fooditem.get(i).Price));
         switch (i)
         {
-            case 0: holder.productImage.setImageResource(R.drawable.burger0);
+            case 0: holder.productImage.setImageResource(R.drawable.pizza1);
+                    break;
+            case 1: holder.productImage.setImageResource(R.drawable.pizza2);
                 break;
-            case 1: holder.productImage.setImageResource(R.drawable.burger1);
+            case 2: holder.productImage.setImageResource(R.drawable.pizza3);
                 break;
-            case 2: holder.productImage.setImageResource(R.drawable.burger2);
+            case 3: holder.productImage.setImageResource(R.drawable.pizza4);
                 break;
-            case 3: holder.productImage.setImageResource(R.drawable.burger2);
+            case 4: holder.productImage.setImageResource(R.drawable.pizza5);
                 break;
-            case 4: holder.productImage.setImageResource(R.drawable.burger0);
-                break;
-            case 5: holder.productImage.setImageResource(R.drawable.burger1);
+            case 5: holder.productImage.setImageResource(R.drawable.pizza6);
                 break;
         }
+
 
     }
 
@@ -98,14 +100,14 @@ public class RVFoodAdapter extends RecyclerView.Adapter<RVFoodAdapter.FoodViewHo
     public int getItemCount() {
         return fooditem.size();
     }
-    public void setClickListner(RVFoodAdapter.ClickListner clickListner)
+    public void setClickListner(RVDominosAdapter.ClickListner clickListner)
     {
         this.clickListner=clickListner;
     }
 
     public interface ClickListner
     {
-        public void ItemClicked(View view , int position);
+        public void ItemClicked(View view, int position);
     }
 
 
@@ -151,7 +153,7 @@ public class RVFoodAdapter extends RecyclerView.Adapter<RVFoodAdapter.FoodViewHo
             fooditem.add(new FoodItem("McPaneer",100,"lalalala"));
             fooditem.add(new FoodItem("McSwirl",100,"lalalala"));
 
-            RVFoodAdapter adapter=new RVFoodAdapter(this,fooditem);
+            RVDominosAdapter adapter=new RVDominosAdapter(this,fooditem);
             adapter.setClickListner(this);
             rv.setAdapter(adapter);
         }

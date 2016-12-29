@@ -3,11 +3,16 @@ package com.example.ayush.resturantninjas.Main;
 import android.app.Application;
 import android.app.NotificationManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.RemoteException;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.ayush.resturantninjas.R;
+import com.example.ayush.resturantninjas.RestrauntActivity.BurgerKing;
+import com.example.ayush.resturantninjas.RestrauntActivity.Dominos;
+import com.example.ayush.resturantninjas.RestrauntActivity.KhanaKhazana;
 
 import org.altbeacon.beacon.BeaconConsumer;
 import org.altbeacon.beacon.BeaconManager;
@@ -31,9 +36,8 @@ public class MyApp extends Application implements BeaconConsumer {
 
     public ArrayList<String> regionNameList;
     public ArrayList<Region> regionList;
-
+    public static Integer present;
     public HashMap<String,Region> ssnRegionMap;
-
 
 
     @Override
@@ -41,6 +45,41 @@ public class MyApp extends Application implements BeaconConsumer {
         beaconManager.addMonitorNotifier(new MonitorNotifier() {
             @Override
             public void didEnterRegion(Region region) {
+//                String myRegionName = region.getUniqueId();
+//                Toast.makeText(MyApp.this, "ENter Region"+myRegionName, Toast.LENGTH_SHORT).show();
+//
+//
+//                if(myRegionName=="Dominos"){
+//                    present = 1;
+//                    Intent intent = new Intent(getApplicationContext(),Dominos.class);
+//                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                    startActivity(intent);
+//                    Toast.makeText(MyApp.this, "ENter Region"+myRegionName, Toast.LENGTH_SHORT).show();
+//
+//
+//                }
+//
+//                else if(myRegionName=="Mc Donalds"){
+//                    present = 2;
+//                    Intent intent = new Intent(getApplicationContext(),BurgerKing.class);
+//                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                    startActivity(intent);
+//
+//                    Toast.makeText(MyApp.this, "ENter Region"+myRegionName, Toast.LENGTH_SHORT).show();
+//
+//                }
+//
+//                else if(myRegionName=="Khaana Khazaana"){
+//                    present = 3;
+//                    Log.d("mytag","Khaana khazaana");
+//                    Intent intent = new Intent(getApplicationContext(),KhanaKhazana.class);
+//                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                    startActivity(intent);
+//
+//                    Toast.makeText(MyApp.this, "ENter Region"+myRegionName, Toast.LENGTH_SHORT).show();
+//
+//                }
+//
 
             }
 
@@ -52,17 +91,51 @@ public class MyApp extends Application implements BeaconConsumer {
             @Override
             public void didDetermineStateForRegion(int i, Region region) {
                 String regionName = region.getUniqueId();
-                String beaconSSN = region.getId2().toHexString();
+
+                Log.d("mytag", String.valueOf(regionList.size()));
+
                 if(i==INSIDE){
-                    Log.i("TAG","Inside"+regionName);
+                    Log.i("TAG","Inside "+regionName);
                     regionNameList.add(regionName);
                     regionList.add(region);
+                    String myRegionName = regionName;
+                        if(myRegionName=="Dominos"){
+                            present = 1;
+                            Intent intent = new Intent(getApplicationContext(),Dominos.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(intent);
 
+                        }
+                        else if(myRegionName=="Mc Donalds"){
+                            present = 2;
+                            Intent intent = new Intent(getApplicationContext(),BurgerKing.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(intent);
+
+                        }
+                        else if(myRegionName=="Khaana Khazaana"){
+                            present = 3;
+                            Log.d("mytag","Khaana khazaana");
+                            Intent intent = new Intent(getApplicationContext(),KhanaKhazana.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(intent);
+
+                        }
                 }
-                else if(i==OUTSIDE){
-                    Log.i("TAG","Outside"+regionName);
+
+                else if(i == OUTSIDE ){
+                    //Log.i("TAG","Outside"+regionName);
+
                     if(regionList.contains(region)){
                         regionList.remove(region);
+                        if(regionList.size()==0)
+                        {
+                            present=0;
+                        }
+                        else
+                        {
+                            //Let the Last activity remain for the viewer
+                        }
                     }
                     if(regionNameList.contains(regionName)){
                         regionNameList.remove(regionName);
@@ -94,7 +167,6 @@ public class MyApp extends Application implements BeaconConsumer {
         mNotificationManager.notify(0, mBuilder.build());
 
     }
-
     public static MyApp getInstance(){
         return instance;
     }
@@ -103,7 +175,7 @@ public class MyApp extends Application implements BeaconConsumer {
     public void onCreate() {
         super.onCreate();
         instance = this;
-
+        present = 0;
         setUpBeacon();
     }
 
@@ -113,13 +185,18 @@ public class MyApp extends Application implements BeaconConsumer {
         regionList = new ArrayList<>();
         regionNameList = new ArrayList<>();
 
+        String res_1 = "Dominos";
+        String res_2 =  "Mc Donalds";
+        String res_3 = "Khaana Khazaana";
+
+        ssnRegionMap.put("0x0117c55fc452",new Region(res_1,nameSpaceId,Identifier.parse("0x0117c55fc452"),null));
+        ssnRegionMap.put("0x0117c555c65f",new Region(res_2,nameSpaceId,Identifier.parse("0x0117c555c65f"),null));
+        ssnRegionMap.put("0x0117c55ec086",new Region(res_3,nameSpaceId,Identifier.parse("0x0117c55ec086"),null));
+
         ssnRegionMap.put("0x0117c59825E9",new Region("Test Room",nameSpaceId, Identifier.parse("0x0117c59825E9"),null));
         ssnRegionMap.put("0x0117c55be3a8",new Region("Git Room",nameSpaceId,Identifier.parse("0x0117c55be3a8"),null));
         ssnRegionMap.put("0x0117c552c493",new Region("Android Room",nameSpaceId,Identifier.parse("0x0117c552c493"),null));
-        ssnRegionMap.put("0x0117c55fc452",new Region("iOS Room",nameSpaceId,Identifier.parse("0x0117c55fc452"),null));
-        ssnRegionMap.put("0x0117c555c65f",new Region("Python Room",nameSpaceId,Identifier.parse("0x0117c555c65f"),null));
         ssnRegionMap.put("0x0117c55d6660",new Region("Office",nameSpaceId,Identifier.parse("0x0117c55d6660"),null));
-        ssnRegionMap.put("0x0117c55ec086",new Region("Ruby Room",nameSpaceId,Identifier.parse("0x0117c55ec086"),null));
 
         beaconManager = BeaconManager.getInstanceForApplication(this);
 
