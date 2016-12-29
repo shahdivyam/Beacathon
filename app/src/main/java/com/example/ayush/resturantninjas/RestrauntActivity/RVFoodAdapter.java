@@ -78,17 +78,17 @@ public class RVFoodAdapter extends RecyclerView.Adapter<RVFoodAdapter.FoodViewHo
         holder.ratemoney.setText(String.valueOf(fooditem.get(i).Price));
         switch (i)
         {
-            case 0: holder.productImage.setImageResource(R.drawable.burger0);
+            case 0: holder.productImage.setImageResource(R.drawable.bebe);
                 break;
-            case 1: holder.productImage.setImageResource(R.drawable.burger1);
+            case 1: holder.productImage.setImageResource(R.drawable.bebe);
                 break;
-            case 2: holder.productImage.setImageResource(R.drawable.burger2);
+            case 2: holder.productImage.setImageResource(R.drawable.bebe);
                 break;
-            case 3: holder.productImage.setImageResource(R.drawable.burger2);
+            case 3: holder.productImage.setImageResource(R.drawable.bebe);
                 break;
-            case 4: holder.productImage.setImageResource(R.drawable.burger0);
+            case 4: holder.productImage.setImageResource(R.drawable.bebe);
                 break;
-            case 5: holder.productImage.setImageResource(R.drawable.burger1);
+            case 5: holder.productImage.setImageResource(R.drawable.bebe);
                 break;
         }
 

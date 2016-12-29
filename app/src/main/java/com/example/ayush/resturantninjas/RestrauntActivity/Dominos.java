@@ -47,43 +47,12 @@ public class Dominos extends AppCompatActivity implements RVDominosAdapter.Click
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder alertDialog = new AlertDialog.Builder(Dominos.this);
-                alertDialog.setTitle("NAME");
-                alertDialog.setMessage("Enter Name");
-                final EditText input = new EditText(Dominos.this);
-                LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-                        LinearLayout.LayoutParams.MATCH_PARENT,
-                        LinearLayout.LayoutParams.MATCH_PARENT);
-                input.setLayoutParams(lp);
-                alertDialog.setView(input);
-                alertDialog.setIcon(R.drawable.cart);
-                alertDialog.setPositiveButton("YES", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        String name=input.getText().toString();
-                        Toast.makeText(context, "name", Toast.LENGTH_SHORT).show();
-                        Intent intent=new Intent(getApplicationContext(),FinalActivity.class);
-                        intent.putExtra("Name",name);
-                        startActivity(intent);
-                    }
-                });
-                alertDialog.setNegativeButton("NO",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.cancel();
-                            }
-                        });
-                alertDialog.show();
-
-                List<Order> order = db.getAllOrder();
-                for (Order cn : order) {
-                    String log = "Id: "+cn.foodname+" ,Name: " + cn.stallname + " ,Phone: " +
-                            cn.qty;
-                    Log.d("Name: ", log);
+                Intent intent1=new Intent(getApplicationContext(),CartActivity.class);
+                startActivity(intent1);
                 }
 
             }
-        });
+        );
         fooditem=new ArrayList<>();
         fooditem.add(new FoodItem("Choclate Pizza",100,"lalalala"));
         fooditem.add(new FoodItem("Paneer Pizza",100,"lalalala"));

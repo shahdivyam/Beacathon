@@ -33,7 +33,7 @@ public class BurgerKing extends AppCompatActivity implements RVBurgerKingAdapter
         setContentView(R.layout.activity_click);
         context=this;
 
-        Intent intent=getIntent();
+        final Intent intent=getIntent();
         int position=intent.getIntExtra("Position",-1);
 
         Toast.makeText(this, String.valueOf(position), Toast.LENGTH_SHORT).show();
@@ -48,40 +48,8 @@ public class BurgerKing extends AppCompatActivity implements RVBurgerKingAdapter
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder alertDialog = new AlertDialog.Builder(BurgerKing.this);
-                alertDialog.setTitle("NAME");
-                alertDialog.setMessage("Enter Name");
-                final EditText input = new EditText(BurgerKing.this);
-                LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-                        LinearLayout.LayoutParams.MATCH_PARENT,
-                        LinearLayout.LayoutParams.MATCH_PARENT);
-                input.setLayoutParams(lp);
-                alertDialog.setView(input);
-                alertDialog.setIcon(R.drawable.cart);
-                alertDialog.setPositiveButton("YES", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        String name=input.getText().toString();
-                        Toast.makeText(context, "name", Toast.LENGTH_SHORT).show();
-                        Intent intent=new Intent(getApplicationContext(),FinalActivity.class);
-                        intent.putExtra("Name",name);
-                        startActivity(intent);
-                    }
-                });
-                alertDialog.setNegativeButton("NO",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.cancel();
-                            }
-                        });
-                alertDialog.show();
-
-                List<Order> order = db.getAllOrder();
-                for (Order cn : order) {
-                    String log = "Id: "+cn.foodname+" ,Name: " + cn.stallname + " ,Phone: " +
-                            cn.qty;
-                    Log.d("Name: ", log);
-                }
+                Intent intent1=new Intent(getApplicationContext(),CartActivity.class);
+                startActivity(intent1);
 
             }
         });

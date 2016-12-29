@@ -64,7 +64,16 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder>{
     public void onBindViewHolder(PersonViewHolder personViewHolder, int i) {
         personViewHolder.resturantname.setText(resturants.get(i).name);
         personViewHolder.resturantdistance.setText(String.valueOf(resturants.get(i).distance));
+        if(i==1)
         personViewHolder.resturantPhoto.setImageResource(R.drawable.bebe);
+        if(i==0)
+            personViewHolder.resturantPhoto.setImageResource(R.drawable.pizza1);
+        if(i==2)
+            personViewHolder.resturantPhoto.setImageResource(R.drawable.burger0);
+
+
+
+
     }
     @Override
     public int getItemCount() {
