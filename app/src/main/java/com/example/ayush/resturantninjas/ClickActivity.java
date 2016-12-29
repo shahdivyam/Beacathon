@@ -10,6 +10,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -53,7 +54,20 @@ public class ClickActivity extends AppCompatActivity {
 
         RVFoodAdapter adapter=new RVFoodAdapter(this,fooditem);
         rv.setAdapter(adapter);
-
+        /* DatabaseHandler db=new DatabaseHandler(this);
+        db.addOrder(new Order("Dominos","Chocolate Pizza",1,100));
+        db.addOrder(new Order("Dominos","Chocolate Pizza",1,100));
+        db.addOrder(new Order("Dominos","Chocolate Pizza",1,100));
+        db.addOrder(new Order("Dominos","Chocolate Pizza",1,100));
+        Log.d("Reading: ", "Reading all contacts..");
+        List<Order> order = db.getAllOrder();
+        for (Order cn : order) {
+            String log = "Id: "+cn.foodname+" ,Name: " + cn.stallname + " ,Phone: " +
+                    cn.qty;
+            // Writing Contacts to log
+            Log.d("Name: ", log);
+        }
+        */
 
     }
 
