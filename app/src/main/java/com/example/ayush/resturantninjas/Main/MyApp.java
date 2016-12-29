@@ -1,4 +1,4 @@
-package com.example.ayush.resturantninjas;
+package com.example.ayush.resturantninjas.Main;
 
 import android.app.Application;
 import android.app.NotificationManager;
@@ -6,6 +6,8 @@ import android.content.Context;
 import android.os.RemoteException;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
+
+import com.example.ayush.resturantninjas.R;
 
 import org.altbeacon.beacon.BeaconConsumer;
 import org.altbeacon.beacon.BeaconManager;

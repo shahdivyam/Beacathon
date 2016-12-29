@@ -1,4 +1,4 @@
-package com.example.ayush.resturantninjas;
+package com.example.ayush.resturantninjas.RestrauntActivity;
 
 /**
  * Created by Ayush on 29-12-2016.

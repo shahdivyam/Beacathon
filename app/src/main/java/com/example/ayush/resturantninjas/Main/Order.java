@@ -1,4 +1,4 @@
-package com.example.ayush.resturantninjas;
+package com.example.ayush.resturantninjas.Main;
 
 /**
  * Created by Ayush on 29-12-2016.

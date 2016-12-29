@@ -1,4 +1,4 @@
-package com.example.ayush.resturantninjas;
+package com.example.ayush.resturantninjas.Main;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.example.ayush.resturantninjas;
+package com.example.ayush.resturantninjas.RestrauntActivity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,12 +7,14 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
+
+import com.example.ayush.resturantninjas.Main.Order;
+import com.example.ayush.resturantninjas.R;
 
 import java.util.ArrayList;
 import java.util.List;
