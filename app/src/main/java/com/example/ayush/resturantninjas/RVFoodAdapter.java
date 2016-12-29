@@ -19,6 +19,7 @@ public class RVFoodAdapter extends RecyclerView.Adapter<RVFoodAdapter.FoodViewHo
 
         List<FoodItem> fooditem;
         public static Context context;
+         private static RVFoodAdapter.ClickListner clickListner;
         RVFoodAdapter(Context context, List<FoodItem> fooditem)
         {
             this.context=context;
@@ -38,6 +39,15 @@ public class RVFoodAdapter extends RecyclerView.Adapter<RVFoodAdapter.FoodViewHo
             ratemoney=(TextView)itemView.findViewById(R.id.RateMoeny);
             productImage=(ImageView)itemView.findViewById(R.id.ProductImage);
             addtoCart=(ImageView)itemView.findViewById(R.id.AddToCart);
+            addtoCart.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(clickListner!=null)
+                    {
+                        clickListner.ItemClicked(v,getPosition());
+                    }
+                }
+            });
 
         }
 
@@ -62,7 +72,15 @@ public class RVFoodAdapter extends RecyclerView.Adapter<RVFoodAdapter.FoodViewHo
     public int getItemCount() {
         return fooditem.size();
     }
+    public void setClickListner(RVFoodAdapter.ClickListner clickListner)
+    {
+        this.clickListner=clickListner;
+    }
 
+    public interface ClickListner
+    {
+        public void ItemClicked(View view , int position);
+    }
 
 
 

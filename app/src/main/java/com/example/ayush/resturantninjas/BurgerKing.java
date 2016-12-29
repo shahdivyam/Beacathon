@@ -9,15 +9,17 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class BurgerKing extends AppCompatActivity {
+public class BurgerKing extends AppCompatActivity implements RVFoodAdapter.ClickListner {
     public List<FoodItem> fooditem;
     Context context;
+    DatabaseHandler db=new DatabaseHandler(this);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,8 +41,13 @@ public class BurgerKing extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                List<Order> order = db.getAllOrder();
+                for (Order cn : order) {
+                    String log = "Id: "+cn.foodname+" ,Name: " + cn.stallname + " ,Phone: " +
+                            cn.qty;
+                    Log.d("Name: ", log);
+                }
+
             }
         });
         fooditem=new ArrayList<>();
@@ -52,6 +59,32 @@ public class BurgerKing extends AppCompatActivity {
         fooditem.add(new FoodItem("McSwirl",100,"lalalala"));
 
         RVFoodAdapter adapter=new RVFoodAdapter(this,fooditem);
+        adapter.setClickListner(this);
         rv.setAdapter(adapter);
+    }
+
+    @Override
+    public void ItemClicked(View view, int position) {
+
+        switch (position)
+        {
+            case 0:db.addOrder(new Order("McDonalds","Chicken Grll",1,100));
+                break;
+            case 1: db.addOrder(new Order("McDonalds","McAloo",1,100));
+                break;
+            case 2: db.addOrder(new Order("McDonalds","McChicken",1,100));
+                break;
+            case 3:db.addOrder(new Order("McDonalds","McPuff",1,100));
+                break;
+            case 4: db.addOrder(new Order("McDonalds","McPaneer",1,100));
+                break;
+            case 5: db.addOrder(new Order("McDonalds","McSwirl",1,100));
+                break;
+
+        }
+        Snackbar.make(view, "Your Order is Added ", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show();
+
+
     }
 }

@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements RVAdapter.ClickListner {
-Resturant resturant;
+    Resturant resturant;
     Context context;
     public List<Resturant> resturants;
     @Override
@@ -50,7 +50,7 @@ Resturant resturant;
                     intent.putExtra("Position",position);
                     startActivity(intent);
                     break;
-            case 2:intent = new Intent(getApplicationContext(),KhanaKhazana.class);
+            case 2:intent = new Intent(getApplicationContext(),BurgerKing.class);
                     intent.putExtra("Position",position);
                     startActivity(intent);
                     break;

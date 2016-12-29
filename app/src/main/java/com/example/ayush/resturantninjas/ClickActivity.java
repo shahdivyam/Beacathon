@@ -17,9 +17,10 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ClickActivity extends AppCompatActivity {
+public class ClickActivity extends AppCompatActivity implements RVFoodAdapter.ClickListner {
     public List<FoodItem> fooditem;
     Context context;
+    DatabaseHandler db=new DatabaseHandler(this);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,8 +41,12 @@ public class ClickActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                List<Order> order = db.getAllOrder();
+                for (Order cn : order) {
+                    String log = "Id: "+cn.foodname+" ,Name: " + cn.stallname + " ,Phone: " +
+                            cn.qty;
+                    Log.d("Name: ", log);
+                }
             }
         });
         fooditem=new ArrayList<>();
@@ -53,7 +58,9 @@ public class ClickActivity extends AppCompatActivity {
         fooditem.add(new FoodItem("Random Pizza",100,"lalalala"));
 
         RVFoodAdapter adapter=new RVFoodAdapter(this,fooditem);
+        adapter.setClickListner(this);
         rv.setAdapter(adapter);
+
         /* DatabaseHandler db=new DatabaseHandler(this);
         db.addOrder(new Order("Dominos","Chocolate Pizza",1,100));
         db.addOrder(new Order("Dominos","Chocolate Pizza",1,100));
@@ -71,4 +78,26 @@ public class ClickActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void ItemClicked(View view, int position) {
+        switch (position)
+        {
+            case 0:db.addOrder(new Order("Dominos","Chocolate Pizza",1,100));
+                    break;
+            case 1: db.addOrder(new Order("Dominos","Paneer Pizza",1,100));
+                    break;
+            case 2: db.addOrder(new Order("Dominos","Cheese burst",1,100));
+                    break;
+            case 3:db.addOrder(new Order("Dominos","Mexican Green Wave",1,100));
+                break;
+            case 4: db.addOrder(new Order("Dominos","Spicy Chicken",1,100));
+                break;
+            case 5: db.addOrder(new Order("Dominos","Bruger Pizza",1,100));
+                break;
+
+        }
+        Snackbar.make(view, "Your Order is Added ", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show();
+
+    }
 }
