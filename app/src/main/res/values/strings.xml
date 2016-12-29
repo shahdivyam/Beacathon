@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ResturantNinjas</string>
+    <string name="title_activity_click">ClickActivity</string>
 </resources>

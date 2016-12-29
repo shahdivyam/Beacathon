@@ -1,5 +1,7 @@
 package com.example.ayush.resturantninjas;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,26 +16,42 @@ import java.util.List;
  * Created by Ayush on 29-12-2016.
  */
 
-public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder> {
+public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder>{
+
+    private static ClickListner clickListner;
+    public static Context context;
+    List<Resturant> resturants;
+
+    RVAdapter(Context context,List<Resturant> resturants){
+        this.context=context;
+        this.resturants = resturants;
+    }
 
     public static class PersonViewHolder extends RecyclerView.ViewHolder {
         TextView resturantname;
         TextView resturantdistance;
         ImageView resturantPhoto;
 
-        PersonViewHolder(View itemView) {
+        PersonViewHolder(final View itemView) {
             super(itemView);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(clickListner!=null)
+                    {
+                        clickListner.ItemClicked(v,getPosition());
+                    }
+                }
+            });
             resturantname = (TextView)itemView.findViewById(R.id.name);
             resturantdistance = (TextView)itemView.findViewById(R.id.distance);
             resturantPhoto = (ImageView)itemView.findViewById(R.id.resturantphoto);
         }
+
     }
 
-    List<Resturant> resturants;
 
-    RVAdapter(List<Resturant> resturants){
-        this.resturants = resturants;
-    }
+
     @Override
     public RVAdapter.PersonViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.resturant_ui, viewGroup, false);
@@ -51,5 +69,15 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder> 
     @Override
     public int getItemCount() {
         return resturants.size();
+    }
+
+    public void setClickListner(ClickListner clickListner)
+    {
+        this.clickListner=clickListner;
+    }
+
+    public interface ClickListner
+    {
+        public void ItemClicked(View view , int position);
     }
 }
