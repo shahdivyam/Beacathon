@@ -12,9 +12,12 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.ayush.resturantninjas.R;
 import com.example.ayush.resturantninjas.RestrauntActivity.BurgerKing;
@@ -42,8 +45,6 @@ public class MainActivity extends AppCompatActivity implements RVAdapter.ClickLi
         setContentView(R.layout.activity_main);
         context=this;
 
-        mButton = (Button) findViewById(R.id.bt_1);
-        mTextView = (TextView) findViewById(R.id.tv_1);
 
 
         if (!havePermissions()) {
@@ -70,20 +71,6 @@ public class MainActivity extends AppCompatActivity implements RVAdapter.ClickLi
         adapter.setClickListner(this);
         rv.setAdapter(adapter);
 
-        mButton.setOnClickListener(new View.OnClickListener() {
-            String str="";
-            @Override
-            public void onClick(View v) {
-                if (!MyApp.getInstance().regionList.isEmpty()){
-                    for(int i=0;i<MyApp.getInstance().regionList.size();i++){
-                        str+=MyApp.getInstance().regionNameList.get(i)+" , ";
-                    }
-                    mTextView.setText(str);
-
-                }
-            }
-
-        });
 
     }
 
@@ -125,5 +112,55 @@ public class MainActivity extends AppCompatActivity implements RVAdapter.ClickLi
     }
     private void requestPermissions() {
         ActivityCompat.requestPermissions(this,mPermissions, PERMISSIONS_REQUEST_CODE);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.mymenu,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id=  item.getItemId();
+        if(id==R.id.action_refresh){
+            refresh();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+    public  void refresh(){
+        if (!MyApp.getInstance().regionList.isEmpty()){
+            int size = MyApp.getInstance().regionList.size();
+            String myRegionName = MyApp.getInstance().regionNameList.get(size-1);
+            Log.d("lalalalala", String.valueOf(MyApp.getInstance().regionNameList.size()));
+            if(myRegionName.equals("Dominos")){
+                Log.d("lalala","Iside Dominos");
+                Intent intent = new Intent(getApplicationContext(),Dominos.class);
+                startActivity(intent);
+                MyApp.getInstance().showNotification("Welcome to Dominos");
+            }
+
+            else if(myRegionName.equals("Mc Donalds")){
+                Log.d("lalala","Iside Mc");
+                Intent intent = new Intent(getApplicationContext(),BurgerKing.class);
+                startActivity(intent);
+                MyApp.getInstance().showNotification("Welcome to Burger King");
+
+            }
+            else if(myRegionName.equals("Khaana Khazaana")){
+
+                Log.d("lalala","Inside Khaana khazaana");
+                Intent intent = new Intent(getApplicationContext(),KhanaKhazana.class);
+                startActivity(intent);
+                MyApp.getInstance().showNotification("Welcome to Khaana Khazaana");
+
+            }
+
+
+            Toast.makeText(MainActivity.this, "Welcome to "+myRegionName, Toast.LENGTH_SHORT).show();
+
+
+
+        }
     }
 }

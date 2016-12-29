@@ -38,6 +38,7 @@ public class MyApp extends Application implements BeaconConsumer {
     public ArrayList<Region> regionList;
     public static Integer present;
     public HashMap<String,Region> ssnRegionMap;
+    public static int count =0;
 
 
     @Override
@@ -92,35 +93,44 @@ public class MyApp extends Application implements BeaconConsumer {
             public void didDetermineStateForRegion(int i, Region region) {
                 String regionName = region.getUniqueId();
 
+                    showNotification("Welcome to food Court");
+
+                count =1;
+
+
+                Toast.makeText(MyApp.this, regionName, Toast.LENGTH_SHORT).show();
+
                 Log.d("mytag", String.valueOf(regionList.size()));
 
                 if(i==INSIDE){
                     Log.i("TAG","Inside "+regionName);
                     regionNameList.add(regionName);
                     regionList.add(region);
-                    String myRegionName = regionName;
-                        if(myRegionName=="Dominos"){
-                            present = 1;
-                            Intent intent = new Intent(getApplicationContext(),Dominos.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                            startActivity(intent);
 
-                        }
-                        else if(myRegionName=="Mc Donalds"){
-                            present = 2;
-                            Intent intent = new Intent(getApplicationContext(),BurgerKing.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                            startActivity(intent);
+//                    String myRegionName = regionName;
+//                        if(myRegionName.equals("Dominos")){
+//                            present = 1;
+//                            Intent intent = new Intent(getApplicationContext(),Dominos.class);
+//                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                            startActivity(intent);
+//
+//                        }
+//                        else if(myRegionName.equals("Mc Donalds")){
+//                            present = 2;
+//                            Intent intent = new Intent(getApplicationContext(),BurgerKing.class);
+//                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                            startActivity(intent);
+//
+//                        }
+//                        else if(myRegionName.equals("Khaana Khazaana")){
+//                            present = 3;
+//                            Log.d("mytag","Khaana khazaana");
+//                            Intent intent = new Intent(getApplicationContext(),KhanaKhazana.class);
+//                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                            startActivity(intent);
+//
+//                        }
 
-                        }
-                        else if(myRegionName=="Khaana Khazaana"){
-                            present = 3;
-                            Log.d("mytag","Khaana khazaana");
-                            Intent intent = new Intent(getApplicationContext(),KhanaKhazana.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                            startActivity(intent);
-
-                        }
                 }
 
                 else if(i == OUTSIDE ){
@@ -156,7 +166,7 @@ public class MyApp extends Application implements BeaconConsumer {
 
     }
 
-    private static void showNotification(String message){
+    public static void showNotification(String message){
         NotificationCompat.Builder mBuilder =   new NotificationCompat.Builder(instance)
                 .setSmallIcon(R.mipmap.ic_launcher) // notification icon
                 .setContentTitle("Welcome!") // title for notification
@@ -192,11 +202,6 @@ public class MyApp extends Application implements BeaconConsumer {
         ssnRegionMap.put("0x0117c55fc452",new Region(res_1,nameSpaceId,Identifier.parse("0x0117c55fc452"),null));
         ssnRegionMap.put("0x0117c555c65f",new Region(res_2,nameSpaceId,Identifier.parse("0x0117c555c65f"),null));
         ssnRegionMap.put("0x0117c55ec086",new Region(res_3,nameSpaceId,Identifier.parse("0x0117c55ec086"),null));
-
-        ssnRegionMap.put("0x0117c59825E9",new Region("Test Room",nameSpaceId, Identifier.parse("0x0117c59825E9"),null));
-        ssnRegionMap.put("0x0117c55be3a8",new Region("Git Room",nameSpaceId,Identifier.parse("0x0117c55be3a8"),null));
-        ssnRegionMap.put("0x0117c552c493",new Region("Android Room",nameSpaceId,Identifier.parse("0x0117c552c493"),null));
-        ssnRegionMap.put("0x0117c55d6660",new Region("Office",nameSpaceId,Identifier.parse("0x0117c55d6660"),null));
 
         beaconManager = BeaconManager.getInstanceForApplication(this);
 
